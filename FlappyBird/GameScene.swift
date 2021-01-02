@@ -309,7 +309,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabelNode.text = "Score:\(score)"
             
             // ベストスコア更新か確認する
-            var bestScore = userDefaults.integer(forKey: "Best")
+            var bestScore = userDefaults.integer(forKey: "BEST")
             if score > bestScore {
                 bestScore = score
                 bestScoreLabelNode.text = "Best Score:\(bestScore)"

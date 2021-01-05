@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -35,9 +34,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // 状態ラベル
     var statusLabelNode: SKLabelNode!
-    
+
     // 効果音
-    var player: AVAudioPlayer!
+    let bellSound = SKAction.playSoundFileNamed("item.mp3", waitForCompletion: false)
 
     // SKView上にシーンが表示されたときに呼ばれるメソッド
     override func didMove(to view: SKView) {
@@ -61,15 +60,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         itemNode = SKNode()
         scrollNode.addChild(itemNode)
 
-        // 効果音をバッファに読み込んでおく
-        do {
-            let soundURL = Bundle.main.url(forResource: "item", withExtension: "mp3")
-            player = try AVAudioPlayer(contentsOf: soundURL!)
-            player.numberOfLoops = 0
-            player.prepareToPlay()
-        } catch {
-            print("soundError")
-        }
         // 各種スプライトを生成する処理をメソッドに分割
         setupGround()
         setupCloud()
@@ -448,7 +438,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
 
             // 効果音を鳴らす
-            player.play()
+            self.run(bellSound)
 
             itemNode.removeAllChildren()
         } else {

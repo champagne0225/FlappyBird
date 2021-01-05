@@ -19,10 +19,10 @@ class ViewController: UIViewController {
         let skView = self.view as! SKView
         
         // FPSを表示する
-        skView.showsFPS = true
+        skView.showsFPS = false
         
         // ノードの数を表示する
-        skView.showsNodeCount = true
+        skView.showsNodeCount = false
         
         // ビューと同じサイズでシーンを作成する
         let scene = GameScene(size: skView.frame.size)

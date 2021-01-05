@@ -287,11 +287,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let wallTexture = SKTexture(imageNamed: "wall")
         let movingDistance = CGFloat(self.frame.size.width + wallTexture.size().width)
 
-        // 画面外まで移動するアクションを作成
-        let moveItem1 = SKAction.moveBy(x: -movingDistance, y: 0, duration: 4)
-        let moveItem2 = SKAction.moveBy(x: 0, y: -self.frame.size.width, duration: 3)
+        // アクションを作成
+        let moveItemX = SKAction.moveBy(x: -movingDistance, y: 0, duration: 4)
+        let moveItemY = SKAction.moveBy(x: 0, y: -self.frame.size.width, duration: 3)
         let rotateItem = SKAction.rotate(toAngle: CGFloat(Double.pi), duration: 4)
-        let actionAll = SKAction.group([moveItem1, moveItem2, rotateItem])
+        let actionAll = SKAction.group([moveItemX, moveItemY, rotateItem])
         
         // 自身を取り除くアクションを作成
         let removeItem = SKAction.removeFromParent()
@@ -301,7 +301,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         // ベルを生成するアクションを作成
         let createItemAnimatin = SKAction.run ({
-            // 壁関連のノードを乗せるノードを作成
+            // アイテム関連のノードを乗せるノードを作成
             let item = SKNode()
             item.position = CGPoint(x: self.frame.size.width * 0.8, y: self.size.height)
             
@@ -325,7 +325,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         // 次のベル作成までの時間待ちのアクションを作成
-        let waitAnimation = SKAction.wait(forDuration: 10)
+        let waitAnimation = SKAction.wait(forDuration: 7, withRange: 3)
         
         // ベルを作成->時間待ち->ベルを作成を無限に繰り返すアクションを作成
         let repeatForeverAnimation = SKAction.repeatForever(SKAction.sequence([waitAnimation, createItemAnimatin]))

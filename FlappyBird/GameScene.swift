@@ -475,6 +475,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         wallNode.removeAllChildren()
         itemNode.removeAllChildren()
+        itemNode.removeAllActions()
+        setupItem()
         
         bird.speed = 1
         scrollNode.speed = 1
